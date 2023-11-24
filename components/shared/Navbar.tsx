@@ -172,7 +172,7 @@ const Navbar = () => {
             alt="logo"
             width={60}
             height={60}
-            className="ml-[40px] mt-2 flex"
+            className=" flex ml-[40px] mt-2 hover:opacity-[0.8]  "
           />
         </NavigationMenuItem>
         <div className="mt-5 border-l-2 border-gray-300 h-[50px]"></div>
@@ -183,24 +183,25 @@ const Navbar = () => {
             alt="logo"
             width={150}
             height={150}
-            className="ml-2 mt-2 flex mr-5"
+            className="ml-2 mt-2 flex mr-5 hover:opacity-[0.8] lg:w-[100px] lg:h-[100px] xl:w-[150px] xl:h-[150px]"
           />
         </NavigationMenuItem>
         {/* Places to go */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold">
-            <span className="hover:border-b-[3px]   border-yellow-400">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
+            <span className="hover:border-b-[3px] border-yellow-400">
               Places to go
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
+            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
               <ListItem href="/kathmandu">
                 <div className="flex flex-col items-center">
                   <Image
+                    className="hover:opacity-[0.8]"
                     src="/assets/ktm.jpg"
-                    width={200}
-                    height={150}
+                    width={300}
+                    height={300}
                     alt="Kathmandu Logo"
                     layout="responsive"
                     objectFit="cover"
@@ -212,6 +213,7 @@ const Navbar = () => {
               </ListItem>
               <ListItem href="/pokhara">
                 <Image
+                  className="hover:opacity-[0.8]"
                   src="/assets/pokhara.jpg"
                   width={200}
                   height={150}
@@ -225,6 +227,7 @@ const Navbar = () => {
               </ListItem>
               <ListItem href="/everest">
                 <Image
+                  className="hover:opacity-[0.8]"
                   src="/assets/Everest.jpg"
                   width={200}
                   height={180}
@@ -238,6 +241,7 @@ const Navbar = () => {
               </ListItem>
               <ListItem href="/janakpur">
                 <Image
+                  className="hover:opacity-[0.8]"
                   src="/assets/janakpur.jpeg"
                   width={200}
                   height={150}
@@ -251,6 +255,7 @@ const Navbar = () => {
               </ListItem>
               <ListItem href="/chitwan">
                 <Image
+                  className="hover:opacity-[0.8]"
                   src="/assets/chitwan.jpg"
                   width={200}
                   height={150}
@@ -264,6 +269,7 @@ const Navbar = () => {
               </ListItem>
               <ListItem href="/lumbini">
                 <Image
+                  className="hover:opacity-[0.8]"
                   src="/assets/lumbini.jpg"
                   width={200}
                   height={150}
@@ -280,13 +286,13 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Things to do */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
             <span className="hover:border-b-[3px]   border-yellow-400">
               Things to do
             </span>
           </NavigationMenuTrigger>
-          <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+          <NavigationMenuContent className="bg-gray-100 ">
+            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
               {components.map((component) => (
                 <ListItem
                   key={component.title}
@@ -308,13 +314,13 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Festivals and events */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
             <span className="hover:border-b-[3px]   border-yellow-400">
               Festivals and events
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
               {components_festivals.map((component) => (
                 <ListItem
                   key={component.title}
@@ -322,9 +328,10 @@ const Navbar = () => {
                   href={component.href}
                 >
                   <Image
+                    className="hover:opacity-[0.8] xl:max-w-[500px]"
                     src={component.img}
-                    width={200}
-                    height={150}
+                    width={300}
+                    height={300}
                     alt={component.title}
                   />
                 </ListItem>
@@ -334,13 +341,13 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Plan your trip */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
             <span className="hover:border-b-[3px]   border-yellow-400">
               Plan Your Trip
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
               {components_plan.map((component) => (
                 <ListItem
                   key={component.title}
@@ -349,15 +356,29 @@ const Navbar = () => {
                   subClasses={component.subClasses}
                 >
                   <Image
+                    className="hover:opacity-[0.8]"
                     src={component.img}
-                    width={200}
-                    height={150}
+                    width={300}
+                    height={300}
                     alt={component.title}
                   />
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
+        </NavigationMenuItem>
+        {/* Hamburger */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="flex mt-5 lg:hidden md:ml-[400px] sm:ml-[300px] ">
+            <span>
+              <Image
+                src="/assets/hamburger.png"
+                width={15}
+                height={15}
+                alt="hamburger"
+              />
+            </span>
+          </NavigationMenuTrigger>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
@@ -385,7 +406,7 @@ const ListItem = React.forwardRef<
             {children}
           </p>
           {subClasses && (
-            <ul className=" cursor-default list-disc text-sm leading-snug text-muted-foreground pl-5">
+            <ul className=" cursor-default list-disc text-sm leading-snug text-muted-foreground pl-5 xl:text-2xl">
               {subClasses.map((subClass, index) => (
                 <li key={index}>{subClass}</li>
               ))}
