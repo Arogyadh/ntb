@@ -170,12 +170,12 @@ const Navbar = () => {
           <Image
             src="/assets/ntb_logo-1663927863_resized1920.jpg"
             alt="logo"
-            width={60}
-            height={60}
-            className=" flex ml-[40px] mt-2 hover:opacity-[0.8]  "
+            width={50}
+            height={50}
+            className=" flex ml-[40px] mt-2 hover:opacity-[0.8]"
           />
         </NavigationMenuItem>
-        <div className="mt-5 border-l-2 border-gray-300 h-[50px]"></div>
+        <div className="hidden mt-5 border-l-2 border-gray-300 h-[50px] sm:flex"></div>
 
         <NavigationMenuItem>
           <Image
@@ -183,12 +183,12 @@ const Navbar = () => {
             alt="logo"
             width={150}
             height={150}
-            className="ml-2 mt-2 flex mr-5 hover:opacity-[0.8] lg:w-[100px] lg:h-[100px] xl:w-[150px] xl:h-[150px]"
+            className="ml-2 mt-2 flex mr-5 hover:opacity-[0.8]"
           />
         </NavigationMenuItem>
         {/* Places to go */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex">
             <span className="hover:border-b-[3px] border-yellow-400">
               Places to go
             </span>
@@ -286,7 +286,7 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Things to do */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex">
             <span className="hover:border-b-[3px]   border-yellow-400">
               Things to do
             </span>
@@ -314,7 +314,7 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Festivals and events */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex">
             <span className="hover:border-b-[3px]   border-yellow-400">
               Festivals and events
             </span>
@@ -341,7 +341,7 @@ const Navbar = () => {
         </NavigationMenuItem>
         {/* Plan your trip */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex xl:text-2xl">
+          <NavigationMenuTrigger className="mt-3 mr-5 font-bold hidden lg:flex">
             <span className="hover:border-b-[3px]   border-yellow-400">
               Plan Your Trip
             </span>

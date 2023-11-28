@@ -32,15 +32,16 @@ const LocationOverlay: React.FC<LocationOverlayProps> = ({
   const youtubeVideoUrl = videoUrls[location.name];
   return (
     <div className="overlay">
-      <div className="video-container">
+      <div className="video-container aspect-w-16 aspect-h-9 sm:aspect-w-4 sm:aspect-h-3 md:aspect-w-16 md:aspect-h-9 lg:aspect-w-16 lg:aspect-h-9">
         <iframe
           width="720"
-          height="415"
+          height="405"
           src={youtubeVideoUrl}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       </div>
+
       <button className="close-button" onClick={onClose}>
         Close
       </button>

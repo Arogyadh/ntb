@@ -1,8 +1,10 @@
 "use client";
+
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import LocationOverlay from "./LocationOverlay";
+import Card from "./Card";
 
 type Location = {
   x: number;
@@ -11,11 +13,13 @@ type Location = {
 };
 
 const Map = () => {
+  const [buttonClicked, setButtonClicked] = useState(false);
   const [activeLocations, setActiveLocations] = useState<Location[]>([]);
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
     null
   );
+  const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
 
   const handleClick = (locationName: string) => {
     const location = activeLocations.find((loc) => loc.name === locationName);
@@ -23,6 +27,13 @@ const Map = () => {
       setShowOverlay(true);
       setSelectedLocation(location);
     }
+  };
+  const handleMouseEnter = (location: Location) => {
+    setHoveredLocation(location);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredLocation(null);
   };
   const handleCloseOverlay = () => {
     setShowOverlay(false);
@@ -36,6 +47,7 @@ const Map = () => {
       { x: 66, y: 67, name: "ChanguNarayan Temple" },
       { x: 80, y: 62, name: "Sagarmatha National Park" },
     ]);
+    setButtonClicked(true);
   };
   const handleButtonClick_PA = () => {
     setActiveLocations([
@@ -46,7 +58,7 @@ const Map = () => {
       { x: 44, y: 52, name: "Dorpatan Hunting Reserve" },
       { x: 48, y: 40, name: "Annapurna" },
       { x: 53, y: 70, name: "Chitwan" },
-      { x: 95, y: 70, name: "Kjunga" },
+      { x: 95, y: 70, name: "Kanchanjunga" },
       { x: 90, y: 90, name: "Koshi Tappu Wildlife Reserve" },
     ]);
   };
@@ -54,61 +66,62 @@ const Map = () => {
     setActiveLocations([
       { x: 63, y: 64, name: "Kathmandu" },
       { x: 64, y: 68, name: "Patan" },
-      { x: 66, y: 67, name: "Bhaktaur" },
+      { x: 66, y: 67, name: "Bhaktapur" },
       { x: 50, y: 55, name: "Pokhara" },
       { x: 38, y: 70, name: "Lumbini" },
     ]);
   };
   const handleButtonClick_ET = () => {
     setActiveLocations([
-      { x: 53, y: 72, name: "Everest" },
-      { x: 63, y: 66, name: "Kanchenjunga" },
-      { x: 66, y: 67, name: "Lhoste" },
-      { x: 80, y: 62, name: "Makalu" },
-      { x: 80, y: 62, name: "Cho Oyu" },
-      { x: 80, y: 62, name: "Dhaulagiri" },
-      { x: 80, y: 62, name: "Mount Manaslu" },
-      { x: 80, y: 62, name: "Annapurna I" },
+      { x: 83, y: 59, name: "Everest" },
+      { x: 96, y: 65, name: "Kanchanjunga" },
+      { x: 85, y: 59, name: "Lhoste" },
+      { x: 89, y: 63, name: "Makalu" },
+      { x: 82, y: 55, name: "Cho Oyu" },
+      { x: 42, y: 40, name: "Dhaulagiri" },
+      { x: 55, y: 45, name: "Mount Manaslu" },
+      { x: 47, y: 42, name: "Annapurna I" },
     ]);
   };
   const handleButtonClick_PS = () => {
     setActiveLocations([
-      { x: 53, y: 72, name: "Lumbini" },
-      { x: 63, y: 66, name: "Swayambhunath" },
-      { x: 66, y: 67, name: "Boudhanath" },
-      { x: 80, y: 62, name: "Jomsom & Muktinath" },
-      { x: 80, y: 62, name: "Pashupatinath" },
+      { x: 38, y: 70, name: "Lumbini" },
+      { x: 61, y: 66, name: "Swayambhunath" },
+      { x: 65, y: 65, name: "Boudhanath" },
+      { x: 46, y: 35, name: "Jomsom & Muktinath" },
+      { x: 63, y: 64, name: "Pashupatinath" },
     ]);
   };
 
   return (
     <>
-      <div className="h-full w-full absolute">
-        <Image
-          className="opacity-[0.4]"
-          src="/assets/bg_map.jpg"
-          alt="background map"
-          fill
-          objectFit="cover"
-        />
+      {/* Desktop view */}
+      <div
+        className="hidden md:block h-full w-full relative mt-10 pb-10"
+        style={{
+          backgroundImage: 'url("/assets/bg_map.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div>
-          <div className="flex m-10 md:text-2xl lg:text-3xl xl:text-4xl text-black font-bold justify-center items-center underline">
-            Places to visit
+          <div className="font-dancing relative flex  mt-1 text-[30px] md:text-[40px] lg:text-[50px] xl:text-[60px] text-gray-800 font-bold justify-start px-7">
+            Places to go
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <div className="col-span-1">
-            <div className="absolute px-5 py-2 flex flex-col justify-between space-y-2">
+            <div className="absolute px-5 pb-2 flex space-x-2 space-y-2 flex-wrap md:flex-col md:space-y-2 md:items-start">
               <Button
-                className="sm:w-[150px] md:w-[250px] lg:w-[300px]"
+                className="md:w-[250px] lg:w-[300px] bg-[#f1e759] ml-2"
                 onClick={handleButtonClick_WHS}
-                variant="outline"
+                variant="ghost"
               >
                 World Heritage
               </Button>
 
               <Button
-                className="sm:w-[150px] md:w-[250px] lg:w-[300px]"
+                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
                 onClick={handleButtonClick_PA}
                 variant="outline"
               >
@@ -116,7 +129,7 @@ const Map = () => {
               </Button>
 
               <Button
-                className="sm:w-[150px] md:w-[250px] lg:w-[300px]"
+                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
                 onClick={handleButtonClick_CT}
                 variant="outline"
               >
@@ -124,7 +137,7 @@ const Map = () => {
               </Button>
 
               <Button
-                className="sm:w-[150px] md:w-[250px] lg:w-[300px]"
+                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
                 onClick={handleButtonClick_ET}
                 variant="outline"
               >
@@ -132,7 +145,7 @@ const Map = () => {
               </Button>
 
               <Button
-                className="sm:w-[150px] md:w-[250px] lg:w-[300px]"
+                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
                 onClick={handleButtonClick_PS}
                 variant="outline"
               >
@@ -141,7 +154,7 @@ const Map = () => {
             </div>
           </div>
 
-          <div className="col-span-1 hidden md:flex">
+          <div className="col-span-2 hidden md:flex">
             <div className="  w-full h-full relative">
               <Image
                 src="/assets/map-1.png"
@@ -155,13 +168,14 @@ const Map = () => {
                   key={index}
                   className="absolute "
                   onClick={() => handleClick(location.name)}
+                  onMouseEnter={() => handleMouseEnter(location)}
+                  onMouseLeave={handleMouseLeave}
                   style={{
                     position: "absolute",
                     top: `${location.y}%`,
                     left: `${location.x}%`,
                     transform: "translate(-50%, -50%)",
                   }}
-                  title={location.name}
                 >
                   <div className="inline-block animate-pulse">
                     <Image
@@ -171,9 +185,28 @@ const Map = () => {
                       height={22}
                     />
                   </div>
-                  <div className="absolute opacity-[0.4] font-bold hover:opacity-[1] cursor-pointer text-black text-xs">
-                    {location.name}
-                  </div>
+                  {hoveredLocation === location && (
+                    <div
+                      className="absolute top-0 left-0  bg-white shadow-md rounded-md"
+                      style={{
+                        position: "absolute",
+                        top: `${location.y - 1200}%`,
+                        left: `${location.x - 1800}%`,
+                      }}
+                    >
+                      <Image
+                        className="object-cover"
+                        src={`/assets/${location.name}.jpg`}
+                        alt={location.name}
+                        layout="responsive"
+                        height={200}
+                        width={200}
+                      />
+                      <div className="flex text-3xl flex-row p-2 items-center justify-center font-dancing whitespace-nowrap">
+                        {location.name}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -186,75 +219,81 @@ const Map = () => {
           </div>
         </div>
       </div>
+      {/* Mobile view */}
+      <div
+        className="h-full w-full relative mt-10 md:hidden"
+        style={{
+          backgroundImage: 'url("/assets/bg_map.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="font-dancing relative flex  mt-1 text-[30px] md:text-[40px] lg:text-[50px] xl:text-[60px] text-gray-800 font-bold justify-start px-7">
+          Places to go
+        </div>
+        <div className="flex flex-wrap h-full w-full space-x-2 space-y-2 pb-5 ">
+          <Button
+            autoFocus
+            className="bg-[#f1e759] ml-2 mt-2"
+            onClick={handleButtonClick_WHS}
+            variant="ghost"
+            size="sm"
+          >
+            World Heritage
+          </Button>
+
+          <Button
+            className="bg-[#f1e759]"
+            onClick={handleButtonClick_PA}
+            variant="outline"
+            size="sm"
+          >
+            Protected Area
+          </Button>
+
+          <Button
+            className="bg-[#f1e759]"
+            onClick={handleButtonClick_CT}
+            variant="outline"
+            size="sm"
+          >
+            Cities and Towns
+          </Button>
+
+          <Button
+            className="bg-[#f1e759] "
+            onClick={handleButtonClick_ET}
+            variant="outline"
+            size="sm"
+          >
+            Eight Thousanders
+          </Button>
+
+          <Button
+            className=" bg-[#f1e759] "
+            onClick={handleButtonClick_PS}
+            variant="outline"
+            size="sm"
+          >
+            Pilgrimage Sites
+          </Button>
+        </div>
+        {buttonClicked &&
+          activeLocations.map((location, index) => (
+            <Card
+              key={index}
+              location={location}
+              onClick={() => handleClick(location.name)}
+            />
+          ))}
+        {showOverlay && selectedLocation && (
+          <LocationOverlay
+            location={selectedLocation}
+            onClose={handleCloseOverlay}
+          />
+        )}
+      </div>
     </>
-
-    // <div className="w-full h-full relative">
-    //   <div className="flex md:text-2xl lg:text-3xl xl:text-4xl text-black font-bold justify-center items-center underline">
-    //     Places to visit
-    //   </div>
-    //   <div className="absolute px-5 py-2 flex flex-row justify-between space-x-4">
-    //     <Button onClick={handleButtonClick_WHS} variant="outline">
-    //       World Heritage Sites
-    //     </Button>
-
-    //     <Button onClick={handleButtonClick_PA} variant="outline">
-    //       Protected Area
-    //     </Button>
-
-    //     <Button onClick={handleButtonClick_CT} variant="outline">
-    //       Cities and Towns
-    //     </Button>
-
-    //     <Button onClick={handleButtonClick_ET} variant="outline">
-    //       Eight Thousanders
-    //     </Button>
-
-    //     <Button onClick={handleButtonClick_PS} variant="outline">
-    //       Pilgrimage Sites
-    //     </Button>
-    //   </div>
-    //   <div className="  w-full h-full relative">
-    //     <Image
-    //       src="/assets/map-1.png"
-    //       alt="map image"
-    //       layout="responsive"
-    //       width={500}
-    //       height={500}
-    //     />
-    //     {activeLocations.map((location, index) => (
-    //       <div
-    //         key={index}
-    //         className="absolute "
-    //         onClick={() => handleClick(location.name)}
-    //         style={{
-    //           position: "absolute",
-    //           top: `${location.y}%`,
-    //           left: `${location.x}%`,
-    //           transform: "translate(-50%, -50%)",
-    //         }}
-    //         title={location.name}
-    //       >
-    //         <div className="inline-block animate-pulse">
-    //           <Image
-    //             src="/assets/tag.png"
-    //             alt="tag icon"
-    //             width={22}
-    //             height={22}
-    //           />
-    //         </div>
-    //         <div className="absolute opacity-[0.3] hover:opacity-[1] cursor-pointer text-black font-bold">
-    //           {location.name}
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-    //   {showOverlay && selectedLocation && (
-    //     <LocationOverlay
-    //       location={selectedLocation}
-    //       onClose={handleCloseOverlay}
-    //     />
-    //   )}
-    // </div>
   );
 };
 
