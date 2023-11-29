@@ -42,24 +42,24 @@ const Map = () => {
 
   const handleButtonClick_WHS = () => {
     setActiveLocations([
-      { x: 53, y: 72, name: "Chitwan National Park" },
+      { x: 53, y: 72, name: "Chitwan-NationalPark" },
       { x: 63, y: 66, name: "Swayambhunath" },
-      { x: 66, y: 67, name: "ChanguNarayan Temple" },
-      { x: 80, y: 62, name: "Sagarmatha National Park" },
+      { x: 66, y: 67, name: "ChanguNarayan" },
+      { x: 80, y: 62, name: "Sagarmatha-NationalPark" },
     ]);
     setButtonClicked(true);
   };
   const handleButtonClick_PA = () => {
     setActiveLocations([
-      { x: 10, y: 11, name: "Api Nampa" },
+      { x: 10, y: 11, name: "ApiNampa" },
       { x: 14, y: 25, name: "Khaptad" },
       { x: 18, y: 49, name: "Bardiya" },
       { x: 22, y: 55, name: "Banke" },
-      { x: 44, y: 52, name: "Dorpatan Hunting Reserve" },
+      { x: 44, y: 52, name: "Dorpatan-Hunting-Reserve" },
       { x: 48, y: 40, name: "Annapurna" },
       { x: 53, y: 70, name: "Chitwan" },
       { x: 95, y: 70, name: "Kanchanjunga" },
-      { x: 90, y: 90, name: "Koshi Tappu Wildlife Reserve" },
+      { x: 90, y: 90, name: "Koshi-Tappu-WildlifeReserve" },
     ]);
   };
   const handleButtonClick_CT = () => {
@@ -77,10 +77,10 @@ const Map = () => {
       { x: 96, y: 65, name: "Kanchanjunga" },
       { x: 85, y: 59, name: "Lhoste" },
       { x: 89, y: 63, name: "Makalu" },
-      { x: 82, y: 55, name: "Cho Oyu" },
+      { x: 82, y: 55, name: "ChoOyu" },
       { x: 42, y: 40, name: "Dhaulagiri" },
-      { x: 55, y: 45, name: "Mount Manaslu" },
-      { x: 47, y: 42, name: "Annapurna I" },
+      { x: 55, y: 45, name: "Mount-Manaslu" },
+      { x: 47, y: 42, name: "Annapurna-I" },
     ]);
   };
   const handleButtonClick_PS = () => {
@@ -88,7 +88,7 @@ const Map = () => {
       { x: 38, y: 70, name: "Lumbini" },
       { x: 61, y: 66, name: "Swayambhunath" },
       { x: 65, y: 65, name: "Boudhanath" },
-      { x: 46, y: 35, name: "Jomsom & Muktinath" },
+      { x: 46, y: 35, name: "Jomsom&Muktinath" },
       { x: 63, y: 64, name: "Pashupatinath" },
     ]);
   };

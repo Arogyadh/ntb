@@ -17,7 +17,7 @@ const LocationOverlay: React.FC<LocationOverlayProps> = ({
 }) => {
   // Mapping of location names to YouTube video URLs
   const videoUrls: { [key: string]: string } = {
-    "Chitwan National Park":
+    Chitwan_National_Park:
       "https://www.youtube.com/embed/GGHTF9QSpVg?si=WlbMNm7C90RnsWRB",
     Swayambhunath:
       "https://www.youtube.com/embed/yAwXDsgACtA?si=jDX61wdbsJNDbIoh",
@@ -25,8 +25,7 @@ const LocationOverlay: React.FC<LocationOverlayProps> = ({
       "https://www.youtube.com/embed/9AgddSAfV-U?si=MRWW0Vofh2odw5Oc",
     "Sagarmatha National Park":
       "https://www.youtube.com/embed/xYq5gj_iMt8?si=d_mN2OQfshed3I4Z",
-    "Api Nampa":
-      "https://www.youtube.com/embed/5K1yU73lle8?si=1PH3tRkhTdO9gg5H",
+    Api_Nampa: "https://www.youtube.com/embed/5K1yU73lle8?si=1PH3tRkhTdO9gg5H",
   };
 
   const youtubeVideoUrl = videoUrls[location.name];
