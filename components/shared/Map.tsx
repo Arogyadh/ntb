@@ -99,7 +99,8 @@ const Map = () => {
       <div
         className="hidden md:block h-full w-full relative mt-10 pb-10"
         style={{
-          backgroundImage: 'url("/assets/bg_map.jpg")',
+          backgroundImage:
+            'linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("/assets/bg_map.jpg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -109,11 +110,11 @@ const Map = () => {
             Places to go
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-4 gap-4">
           <div className="col-span-1">
-            <div className="absolute px-5 pb-2 flex space-x-2 space-y-2 flex-wrap md:flex-col md:space-y-2 md:items-start">
+            <div className="absolute md:mt-[50px] lg:mt-[70px] xl:mt-[100px] px-5 pb-2 flex space-x-2 space-y-3 flex-wrap md:flex-col md:space-y-3 md:items-start">
               <Button
-                className="md:w-[250px] lg:w-[300px] bg-[#f1e759] ml-2"
+                className="md:w-[150px] lg:w-[150px] xl:w-[250px] bg-[#F8CE1C] ml-2 hover:animate-gradient text-white rounded-full"
                 onClick={handleButtonClick_WHS}
                 variant="ghost"
               >
@@ -121,40 +122,40 @@ const Map = () => {
               </Button>
 
               <Button
-                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
+                className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C]  hover:animate-gradient text-white rounded-full"
                 onClick={handleButtonClick_PA}
-                variant="outline"
+                variant="ghost"
               >
                 Protected Area
               </Button>
 
               <Button
-                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
+                className="md:w-[150px] lg:w-[150px] xl:w-[250px]   bg-[#F8CE1C]  hover:animate-gradient text-white  rounded-full"
                 onClick={handleButtonClick_CT}
-                variant="outline"
+                variant="ghost"
               >
                 Cities and Towns
               </Button>
 
               <Button
-                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
+                className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C] hover:animate-gradient text-white  rounded-full"
                 onClick={handleButtonClick_ET}
-                variant="outline"
+                variant="ghost"
               >
                 Eight Thousanders
               </Button>
 
               <Button
-                className="md:w-[250px] lg:w-[300px]  bg-[#f1e759]"
+                className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C]  hover:animate-gradient text-white  rounded-full"
                 onClick={handleButtonClick_PS}
-                variant="outline"
+                variant="ghost"
               >
                 Pilgrimage Sites
               </Button>
             </div>
           </div>
 
-          <div className="col-span-2 hidden md:flex">
+          <div className="col-span-2 md:col-span-3  hidden md:flex">
             <div className="  w-full h-full relative">
               <Image
                 src="/assets/map-1.png"

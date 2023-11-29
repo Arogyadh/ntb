@@ -34,7 +34,7 @@ const Hero = () => {
         }}
         className="absolute top-0 left-0 w-full h-full flex items-center justify-center"
       >
-        <Image src="/assets/overlay.svg" alt="overlay" layout="fill" />
+        <Image src="/assets/overlay.svg" alt="overlay" layout="fill" priority />
       </div>
       <video autoPlay loop muted className="w-full h-full object-cover">
         <source src="/assets/hero-1.mp4" type="video/mp4" />

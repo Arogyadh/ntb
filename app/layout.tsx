@@ -7,7 +7,7 @@ import Footer from "@/components/shared/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ntb clone",
+  title: "NTB",
   description: "clone ntb and change ui",
 };
 
