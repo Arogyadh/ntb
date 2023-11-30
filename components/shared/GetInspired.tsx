@@ -63,7 +63,7 @@ const GetInspired = () => {
   };
 
   return (
-    <div className="w-full h-full overflow-hidden bg-gray-200 mt-10 pt-12">
+    <div className="w-full h-full overflow-hidden bg-gray-200 mt-10 pt-12 ">
       <div className="text-7xl font-dancing ml-10">Get Inspired</div>
       <Slider {...settings}>
         {images.map((image, index) => (
@@ -77,7 +77,7 @@ const GetInspired = () => {
               className="p-7 rounded-[100px] hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer"
             />
             <Link href={image.href}>
-              <div className="flex justify-center items-center text-[15px]  md:font-bold md:text-2xl">
+              <div className="flex justify-center items-center text-[15px]  md:font-bold md:text-2xl mb-10">
                 {image.name}
               </div>
             </Link>

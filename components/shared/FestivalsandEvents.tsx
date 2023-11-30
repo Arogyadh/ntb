@@ -56,7 +56,9 @@ const FestivalsandEvents = () => {
   };
   return (
     <div className="w-full h-full overflow-hidden">
-      <div className="text-7xl font-dancing ml-10">Events & Festivals</div>
+      <div className="text-7xl font-dancing ml-10 mt-10">
+        Events & Festivals
+      </div>
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>

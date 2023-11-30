@@ -71,7 +71,7 @@ const SeasonHighlights = () => {
 
   return (
     <div className="w-full h-full overflow-hidden">
-      <div className="text-7xl font-dancing ml-5">Season Highlights</div>
+      <div className="text-7xl font-dancing ml-5 mb-5">Season Highlights</div>
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
@@ -84,7 +84,7 @@ const SeasonHighlights = () => {
               className="px-5 rounded-[100px]"
             />
             <Link href={image.href}>
-              <div className="flex py-3 items-center justify-center font-bold text-2xl">
+              <div className="flex py-2 items-center justify-center font-bold text-2xl">
                 {image.name}
               </div>
             </Link>
