@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NTB",
-  description: "clone ntb and change ui",
+  description: "Personal Project",
 };
 
 export default function RootLayout({
@@ -20,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-
         {children}
         <Footer />
       </body>

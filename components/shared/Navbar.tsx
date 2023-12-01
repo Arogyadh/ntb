@@ -1,30 +1,58 @@
 "use client";
-import React from "react";
-import { cn } from "@/lib/utils";
+import React, { useEffect } from "react";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import Image from "next/image";
+import Slider from "react-slick";
 
-const components: {
-  title: string;
-  href: string;
-  img: string;
-  subClasses?: string[];
-}[] = [
+const images_ptg = [
   {
-    title: "ADVENTURE",
+    name: "Kathmandu",
+    src: "/assets/ktm.jpg",
+    href: "/kathmandu",
+  },
+  {
+    name: "Pokhara",
+    src: "/assets/pokhara.jpg",
+    href: "/pokhara",
+  },
+
+  {
+    name: "Janakpur",
+    src: "/assets/janakpur.jpeg",
+    href: "/janakpur",
+  },
+  {
+    name: "Chitwan",
+    src: "/assets/chitwan.jpg",
+    href: "/chitwan",
+  },
+  {
+    name: "Lumbini",
+    src: "/assets/lumbini.jpg",
+    href: "/lumbini",
+  },
+  {
+    name: "Everest",
+    src: "/assets/Everest.jpg",
+    href: "/everest",
+  },
+];
+
+const images_ttd = [
+  {
+    name: "ADVENTURE",
     href: "/things-to-do/adventure",
-    img: "/assets/adventure.jpeg",
+    src: "/assets/adventure.jpeg",
     subClasses: [
       "TREKKING",
       "ZIP FLYING",
@@ -41,9 +69,9 @@ const components: {
     ],
   },
   {
-    title: "NATURE",
+    name: "NATURE",
     href: "/things-to-do/nature",
-    img: "/assets/nature.jpeg",
+    src: "/assets/nature.jpeg",
     subClasses: [
       "BIRD WATCHING",
       "MOUNTAIN VIEWING",
@@ -54,9 +82,9 @@ const components: {
     ],
   },
   {
-    title: "CULTURE",
+    name: "CULTURE",
     href: "/things-to-do/culture",
-    img: "/assets/culture.jpeg",
+    src: "/assets/culture.jpeg",
     subClasses: [
       "TRADITIONAL CRAFTS",
       "MEET THE PEOPLE",
@@ -69,9 +97,9 @@ const components: {
     ],
   },
   {
-    title: "WELLNESS",
+    name: "WELLNESS",
     href: "/things-to-do/wellness",
-    img: "/assets/wellness.jpeg",
+    src: "/assets/wellness.jpeg",
     subClasses: [
       "MEDITATION",
       "AYURVEDA",
@@ -83,61 +111,45 @@ const components: {
     ],
   },
   {
-    title: "OTHERS",
+    name: "OTHERS",
     href: "/things-to-do/others",
-    img: "/assets/others.jpeg",
+    src: "/assets/others.jpeg",
     subClasses: ["  DESTINATION WEDDING", "MICE", "GOLF"],
   },
 ];
-const components_festivals: { title: string; href: string; img: string }[] = [
+const images_fe = [
   {
-    title: "TIHAR",
+    name: "TIHAR",
     href: "/festivalsandevents/tihar",
-    img: "/assets/tihar.jpeg",
+    src: "/assets/tihar.jpeg",
   },
   {
-    title: "INDRA JATRA",
+    name: "INDRA JATRA",
     href: "/festivalsandevents/indrajatra",
-    img: "/assets/indra.jpeg",
+    src: "/assets/indra.jpeg",
   },
   {
-    title: "DASHAIN",
+    name: "DASHAIN",
     href: "/festivalsandevents/dashain",
-    img: "/assets/dashain.jpeg",
+    src: "/assets/dashain.jpeg",
   },
   {
-    title: "CHHAT PARVA",
+    name: "CHHAT PARVA",
     href: "/festivalsandevents/chhatparva",
-    img: "/assets/chhat.jpeg",
+    src: "/assets/chhat.jpeg",
   },
 ];
-const components_plan: {
-  title: string;
-  href: string;
-  img: string;
-  subClasses?: string[];
-}[] = [
+const images_pyt = [
   {
-    title: "TRIP IDEAS",
-    href: "/plan-your-trip/trip-ideas",
-    img: "/assets/trip-ideas.jpg",
-    subClasses: [
-      "TRAVEL WITH CHILDREN",
-      "GANESH HIMAL TREK",
-      "CHANDRAGIRI - CHITLANG - KULEKHANI",
-      "PILGRIMAGE TO DOLESHWAR MAHADEV TEMPLE",
-    ],
-  },
-  {
-    title: "ABOUT NEPAL",
+    name: "ABOUT NEPAL",
     href: "/plan-your-trip/about-nepal",
-    img: "/assets/about-nepal.jpeg",
+    src: "/assets/about-nepal.jpeg",
     subClasses: ["GEOGRAPHY", "WILDLIFE", "CLIMATE", "PEOPLE", "CULTURE"],
   },
   {
-    title: "TRAVEL DETAILS",
+    name: "TRAVEL DETAILS",
     href: "/plan-your-trip/travel-details",
-    img: "/assets/travel.jpg",
+    src: "/assets/travel.jpg",
     subClasses: [
       "TOURIST VISA",
       "LOCAL TRANSPORTATION",
@@ -150,19 +162,91 @@ const components_plan: {
     ],
   },
   {
-    title: "BOOK YOUR TRIP",
+    name: "BOOK YOUR TRIP",
     href: "/plan-your-trip/travel-details",
-    img: "/assets/book.jpeg",
+    src: "/assets/book.jpeg",
     subClasses: ["BOOK EXPERIENCE", "FLIGHTS"],
   },
   {
-    title: "OTHERS",
+    name: "OTHERS",
     href: "/things-to-do/others",
-    img: "/assets/others.jpeg",
+    src: "/assets/others.jpeg",
     subClasses: ["  DESTINATION WEDDING", "MICE", "GOLF"],
   },
+  {
+    name: "TRIP IDEAS",
+    href: "/plan-your-trip/trip-ideas",
+    src: "/assets/trip-ideas.jpg",
+    subClasses: [
+      "TRAVEL WITH CHILDREN",
+      "GANESH HIMAL TREK",
+      "CHANDRAGIRI - CHITLANG - KULEKHANI",
+      "PILGRIMAGE TO DOLESHWAR MAHADEV TEMPLE",
+    ],
+  },
 ];
+const images = {
+  images_fe,
+  images_ptg,
+  images_pyt,
+  images_ttd,
+};
+
 const Navbar = () => {
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+  };
+  interface ImageItem {
+    name: string;
+    href: string;
+    src: string;
+    subClasses?: string[];
+  }
+  const renderImageSection = (images: ImageItem[]) => (
+    <Slider {...settings} className="max-w-[1200px]">
+      {images.map((image, index) => (
+        <div key={index}>
+          <Image
+            src={image.src}
+            alt={`image ${index + 1}`}
+            height={50}
+            width={50}
+            layout="responsive"
+            className="p-7 rounded-[100px] cursor-pointer hover:opacity-[0.8]"
+            loading="lazy"
+          />
+          <Link href={image.href}>
+            <div className="flex text-gray-500 justify-center items-center text-[15px] md:font-bold md:text-2xl mb-10">
+              {image.name}
+            </div>
+          </Link>
+          {image.subClasses && (
+            <div className="flex flex-col text-gray-600 text-[10px] mb-10">
+              {image.subClasses.map((subclass, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col justify-center text-left mb-[2px] ml-10"
+                >
+                  <ul>
+                    <li className="before:bg-yellow-500 before:w-2 before:h-2 before:rounded-full before:inline-block">
+                      <span className="ml-2 hover:text-gray-900">
+                        {subclass}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </Slider>
+  );
+
   return (
     <NavigationMenu className="bg-gray-100">
       <NavigationMenuList>
@@ -173,6 +257,7 @@ const Navbar = () => {
             width={50}
             height={50}
             className=" flex ml-[40px] mt-2 hover:opacity-[0.8]"
+            priority
           />
         </NavigationMenuItem>
         <div className="hidden mt-5 border-l-2 border-gray-300 h-[50px] sm:flex"></div>
@@ -184,6 +269,7 @@ const Navbar = () => {
             width={150}
             height={150}
             className="ml-2 mt-2 flex mr-5 hover:opacity-[0.8]"
+            priority
           />
         </NavigationMenuItem>
         {/* Places to go */}
@@ -194,94 +280,7 @@ const Navbar = () => {
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
-              <ListItem href="/kathmandu">
-                <div className="flex flex-col items-center">
-                  <Image
-                    className="hover:opacity-[0.8]"
-                    src="/assets/ktm.jpg"
-                    width={300}
-                    height={300}
-                    alt="Kathmandu Logo"
-                    layout="responsive"
-                    objectFit="cover"
-                  />
-                  <div className="mt-2 font-bold text-gray-500 text-center">
-                    Kathmandu
-                  </div>
-                </div>
-              </ListItem>
-              <ListItem href="/pokhara">
-                <Image
-                  className="hover:opacity-[0.8]"
-                  src="/assets/pokhara.jpg"
-                  width={200}
-                  height={150}
-                  alt="pokhara_logo"
-                  layout="responsive"
-                  objectFit="cover"
-                />
-                <div className="mt-2  font-bold text-gray-500 text-center">
-                  Pokhara
-                </div>
-              </ListItem>
-              <ListItem href="/everest">
-                <Image
-                  className="hover:opacity-[0.8]"
-                  src="/assets/Everest.jpg"
-                  width={200}
-                  height={180}
-                  alt="everest_logo"
-                  layout="responsive"
-                  objectFit="cover"
-                />
-                <div className="mt-5  font-bold text-gray-500 text-center">
-                  Everest
-                </div>
-              </ListItem>
-              <ListItem href="/janakpur">
-                <Image
-                  className="hover:opacity-[0.8]"
-                  src="/assets/janakpur.jpeg"
-                  width={200}
-                  height={150}
-                  alt="janakpur_logo"
-                  layout="responsive"
-                  objectFit="cover"
-                />
-                <div className="mt-2  font-bold text-gray-500 text-center">
-                  Janakpur
-                </div>
-              </ListItem>
-              <ListItem href="/chitwan">
-                <Image
-                  className="hover:opacity-[0.8]"
-                  src="/assets/chitwan.jpg"
-                  width={200}
-                  height={150}
-                  alt="chitwan_logo"
-                  layout="responsive"
-                  objectFit="cover"
-                />
-                <div className="mt-2 font-bold text-gray-500 text-center">
-                  Chitwan
-                </div>
-              </ListItem>
-              <ListItem href="/lumbini">
-                <Image
-                  className="hover:opacity-[0.8]"
-                  src="/assets/lumbini.jpg"
-                  width={200}
-                  height={150}
-                  alt="Lumbini Logo"
-                  layout="responsive"
-                  objectFit="cover"
-                />
-                <div className="mt-2 font-bold text-gray-500 text-center">
-                  Lumbini
-                </div>
-              </ListItem>
-            </ul>
+            {renderImageSection(images.images_ptg)}
           </NavigationMenuContent>
         </NavigationMenuItem>
         {/* Things to do */}
@@ -292,24 +291,7 @@ const Navbar = () => {
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100 ">
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                  subClasses={component.subClasses}
-                >
-                  <Image
-                    className="hover:opacity-[0.8]"
-                    src={component.img}
-                    width={200}
-                    height={150}
-                    alt={component.title}
-                  />
-                </ListItem>
-              ))}
-            </ul>
+            {renderImageSection(images.images_ttd)}
           </NavigationMenuContent>
         </NavigationMenuItem>
         {/* Festivals and events */}
@@ -320,23 +302,7 @@ const Navbar = () => {
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
-              {components_festivals.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  <Image
-                    className="hover:opacity-[0.8] xl:max-w-[500px]"
-                    src={component.img}
-                    width={300}
-                    height={300}
-                    alt={component.title}
-                  />
-                </ListItem>
-              ))}
-            </ul>
+            {renderImageSection(images.images_fe)}
           </NavigationMenuContent>
         </NavigationMenuItem>
         {/* Plan your trip */}
@@ -347,24 +313,7 @@ const Navbar = () => {
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gray-100">
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[1000px] xl:w-[1500px] lg:grid-cols-3">
-              {components_plan.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                  subClasses={component.subClasses}
-                >
-                  <Image
-                    className="hover:opacity-[0.8]"
-                    src={component.img}
-                    width={300}
-                    height={300}
-                    alt={component.title}
-                  />
-                </ListItem>
-              ))}
-            </ul>
+            {renderImageSection(images.images_pyt)}
           </NavigationMenuContent>
         </NavigationMenuItem>
         {/* Hamburger */}
@@ -384,39 +333,5 @@ const Navbar = () => {
     </NavigationMenu>
   );
 };
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { subClasses?: string[] }
->(({ className, title, subClasses, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-gray-600 text-xl font-bold leading-none">
-            {title}
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-          {subClasses && (
-            <ul className=" cursor-default list-disc text-sm leading-snug text-muted-foreground pl-5 xl:text-2xl">
-              {subClasses.map((subClass, index) => (
-                <li key={index}>{subClass}</li>
-              ))}
-            </ul>
-          )}
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";
 
 export default Navbar;

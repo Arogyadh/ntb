@@ -96,7 +96,15 @@ const Map = () => {
   return (
     <>
       {/* Desktop view */}
-      <div className="hidden md:block h-full w-full relative mt-10 pb-10 bg-slate-200">
+      <div
+        className="hidden md:block h-full w-full relative mt-10 pb-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("/assets/bg_map.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div>
           <div className="font-dancing relative flex  mt-1 text-[30px] md:text-[40px] lg:text-[50px] xl:text-[60px] text-gray-800 font-bold justify-start px-7">
             Places to go
