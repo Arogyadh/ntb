@@ -1,5 +1,6 @@
 "use client";
-
+import Lottie from "lottie-react";
+import animationData from "../../public/assets/animationData.json";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -48,6 +49,11 @@ const Map = () => {
       { x: 80, y: 62, name: "Sagarmatha-NationalPark" },
     ]);
     setButtonClicked(true);
+
+    const mapContainer = document.getElementById("map_image");
+    if (mapContainer) {
+      mapContainer.scrollIntoView({ behavior: "smooth" });
+    }
   };
   const handleButtonClick_PA = () => {
     setActiveLocations([
@@ -61,6 +67,10 @@ const Map = () => {
       { x: 95, y: 70, name: "Kanchanjunga" },
       { x: 90, y: 90, name: "Koshi-Tappu-WildlifeReserve" },
     ]);
+    const mapContainer = document.getElementById("map_image");
+    if (mapContainer) {
+      mapContainer.scrollIntoView({ behavior: "smooth" });
+    }
   };
   const handleButtonClick_CT = () => {
     setActiveLocations([
@@ -70,6 +80,10 @@ const Map = () => {
       { x: 50, y: 55, name: "Pokhara" },
       { x: 38, y: 70, name: "Lumbini" },
     ]);
+    const mapContainer = document.getElementById("map_image");
+    if (mapContainer) {
+      mapContainer.scrollIntoView({ behavior: "smooth" });
+    }
   };
   const handleButtonClick_ET = () => {
     setActiveLocations([
@@ -82,6 +96,10 @@ const Map = () => {
       { x: 55, y: 45, name: "Mount-Manaslu" },
       { x: 47, y: 42, name: "Annapurna-I" },
     ]);
+    const mapContainer = document.getElementById("map_image");
+    if (mapContainer) {
+      mapContainer.scrollIntoView({ behavior: "smooth" });
+    }
   };
   const handleButtonClick_PS = () => {
     setActiveLocations([
@@ -91,6 +109,10 @@ const Map = () => {
       { x: 46, y: 35, name: "Jomsom&Muktinath" },
       { x: 63, y: 64, name: "Pashupatinath" },
     ]);
+    const mapContainer = document.getElementById("map_image");
+    if (mapContainer) {
+      mapContainer.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -110,116 +132,118 @@ const Map = () => {
             Places to go
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="col-span-1">
-            <div className="absolute md:mt-[50px] lg:mt-[70px] xl:mt-[100px] px-5 pb-2 flex space-x-2 space-y-3 flex-wrap md:flex-col md:space-y-3 md:items-start">
-              <Button
-                className="md:w-[150px] lg:w-[150px] xl:w-[250px] bg-[#F8CE1C] ml-2 hover:animate-gradient text-white rounded-full"
-                onClick={handleButtonClick_WHS}
-                variant="ghost"
-              >
-                World Heritage
-              </Button>
 
-              <Button
-                className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C]  hover:animate-gradient text-white rounded-full"
-                onClick={handleButtonClick_PA}
-                variant="ghost"
-              >
-                Protected Area
-              </Button>
+        <div className="relative md:mt-[50px] lg:mt-[70px] xl:mt-[100px] pb-10">
+          <Button
+            className="md:w-[150px] lg:w-[150px] xl:w-[250px] bg-[#F8CE1C]  hover:animate-gradient text-white rounded-full"
+            onClick={handleButtonClick_WHS}
+            variant="ghost"
+          >
+            World Heritage
+          </Button>
 
-              <Button
-                className="md:w-[150px] lg:w-[150px] xl:w-[250px]   bg-[#F8CE1C]  hover:animate-gradient text-white  rounded-full"
-                onClick={handleButtonClick_CT}
-                variant="ghost"
-              >
-                Cities and Towns
-              </Button>
+          <Button
+            className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C]  hover:animate-gradient text-white rounded-full"
+            onClick={handleButtonClick_PA}
+            variant="ghost"
+          >
+            Protected Area
+          </Button>
 
-              <Button
-                className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C] hover:animate-gradient text-white  rounded-full"
-                onClick={handleButtonClick_ET}
-                variant="ghost"
-              >
-                Eight Thousanders
-              </Button>
+          <Button
+            className="md:w-[150px] lg:w-[150px] xl:w-[250px]   bg-[#F8CE1C]  hover:animate-gradient text-white  rounded-full"
+            onClick={handleButtonClick_CT}
+            variant="ghost"
+          >
+            Cities and Towns
+          </Button>
 
-              <Button
-                className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C]  hover:animate-gradient text-white  rounded-full"
-                onClick={handleButtonClick_PS}
-                variant="ghost"
-              >
-                Pilgrimage Sites
-              </Button>
-            </div>
-          </div>
+          <Button
+            className="md:w-[150px] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C] hover:animate-gradient text-white  rounded-full"
+            onClick={handleButtonClick_ET}
+            variant="ghost"
+          >
+            Eight Thousanders
+          </Button>
 
-          <div className="col-span-2 md:col-span-3  hidden md:flex">
-            <div className="  w-full h-full relative">
-              <Image
-                src="/assets/map-1.png"
-                alt="map image"
-                layout="responsive"
-                width={500}
-                height={500}
-              />
-              {activeLocations.map((location, index) => (
-                <div
-                  key={index}
-                  className="absolute "
-                  onClick={() => handleClick(location.name)}
-                  onMouseEnter={() => handleMouseEnter(location)}
-                  onMouseLeave={handleMouseLeave}
-                  style={{
-                    position: "absolute",
-                    top: `${location.y}%`,
-                    left: `${location.x}%`,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <div className="inline-block animate-pulse">
-                    <Image
-                      src="/assets/tag.png"
-                      alt="tag icon"
-                      width={22}
-                      height={22}
-                    />
-                  </div>
-                  {hoveredLocation === location && (
-                    <div
-                      className="absolute top-0 left-0  bg-white shadow-md rounded-md"
-                      style={{
-                        position: "absolute",
-                        top: `${location.y - 1200}%`,
-                        left: `${location.x - 1800}%`,
-                      }}
-                    >
-                      <Image
-                        className="object-cover"
-                        src={`/assets/${location.name}.jpg`}
-                        alt={location.name}
-                        layout="responsive"
-                        height={200}
-                        width={200}
-                      />
-                      <div className="flex text-3xl flex-row p-2 items-center justify-center font-dancing whitespace-nowrap">
-                        {location.name}
-                      </div>
-                    </div>
-                  )}
+          <Button
+            className="md:w-[150px] z-[10] lg:w-[150px] xl:w-[250px]  bg-[#F8CE1C]  hover:animate-gradient text-white  rounded-full"
+            onClick={handleButtonClick_PS}
+            variant="ghost"
+          >
+            Pilgrimage Sites
+          </Button>
+        </div>
+
+        <div className="hidden md:flex">
+          <div className="  w-full h-full relative">
+            <Image
+              id="map_image"
+              src="/assets/map-1.png"
+              alt="map image"
+              layout="responsive"
+              width={500}
+              height={500}
+            />
+
+            {activeLocations.map((location, index) => (
+              <div
+                key={index}
+                className="absolute "
+                onClick={() => handleClick(location.name)}
+                onMouseEnter={() => handleMouseEnter(location)}
+                onMouseLeave={handleMouseLeave}
+                style={{
+                  position: "absolute",
+                  top: `${location.y}%`,
+                  left: `${location.x}%`,
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                <div className="inline-block animate-pulse ">
+                  <Image
+                    src="/assets/tag.png"
+                    alt="tag icon"
+                    width={25}
+                    height={25}
+                  />
                 </div>
-              ))}
-            </div>
-            {showOverlay && selectedLocation && (
-              <LocationOverlay
-                location={selectedLocation}
-                onClose={handleCloseOverlay}
-              />
-            )}
+
+                {hoveredLocation === location && (
+                  <div
+                    className="absolute top-0 left-0  bg-white shadow-md rounded-md"
+                    style={{
+                      position: "absolute",
+                      top: `${location.y - 1200}%`,
+                      left: `${location.x - 1800}%`,
+                    }}
+                  >
+                    <Image
+                      className="object-cover"
+                      src={`/assets/${location.name}.jpg`}
+                      alt={location.name}
+                      layout="responsive"
+                      height={200}
+                      width={200}
+                    />
+
+                    <div className="flex text-3xl flex-row p-2 items-center justify-center font-dancing whitespace-nowrap">
+                      {location.name}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
+          {showOverlay && selectedLocation && (
+            <LocationOverlay
+              location={selectedLocation}
+              onClose={handleCloseOverlay}
+            />
+          )}
         </div>
       </div>
+
       {/* Mobile view */}
       <div
         className="h-full w-full relative mt-10 md:hidden"
